@@ -1,4 +1,4 @@
-import  { useState, useEffect, useRef } from 'react';
+import  { useState, useEffect, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Bot } from 'lucide-react';
 import axios from 'axios';
@@ -13,18 +13,22 @@ const TrafficAIChatbot = () => {
   ]);
   const [inputMessage, setInputMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Scroll to bottom when messages change
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
+  // Improved scroll to bottom function using useCallback
+  const scrollToBottom = useCallback(() => {
+    messagesEndRef.current?.scrollIntoView({ 
+      behavior: "smooth", 
+      block: "nearest" 
+    });
+  }, []);
 
+  // Use effect to scroll to bottom when messages change
   useEffect(() => {
     scrollToBottom();
-  }, [messages]);
+  }, [messages, scrollToBottom]);
 
-  // Send message to backend
+  // Rest of the code remains the same...
   const sendMessage = async () => {
     if (!inputMessage.trim()) return;
 
@@ -65,7 +69,7 @@ const TrafficAIChatbot = () => {
   };
 
   // Handle input submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     sendMessage();
   };
