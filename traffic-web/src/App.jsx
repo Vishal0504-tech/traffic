@@ -1,14 +1,13 @@
 
 import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/layout/Navbar'; // Make sure the path is correct
-import Footer from './components/layout/Footer'; // Make sure the path is correct
-import HomePage from './pages/HomePage'; // Make sure the path is correct
-import DashboardPage from './pages/DashboardPage'; // Make sure the path is correct
-import MapPage from './pages/MapPage'; // Make sure the path is correct
+import Navbar from './components/layout/Navbar'; 
+import Footer from './components/layout/Footer'; 
+import HomePage from './pages/HomePage';   
+import DashboardPage from './pages/DashboardPage';  
+import MapPage from './pages/MapPage';  
 import SettingsPage from './pages/SettingsPage';
-import TrafficAIChatbot from './pages/TrafficAiBot'; // Make sure the path is correct
-// Make sure the path is correct
-import { AppProvider } from './context/AppContext'; // Ensure this file exists and is correctly referenced
+import TrafficAIChatbot from './pages/TrafficAiBot'; 
+import { AppProvider } from './context/AppContext';  
 
 function App() {
   return (
